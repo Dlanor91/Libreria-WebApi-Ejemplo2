@@ -1,0 +1,50 @@
+==================================================================================================================
+
+Libreria-Herencia -
+
+==================================================================================================================
+
+
+Esta solución implementa una solución con Herencia con EF CORE (TPH)
+
+- Biblioteca de clases Libreria.Dominio con clases de dominio y las interfaces de los repositorios
+
+	- Entidades de negocio: 
+						Clase Autor.
+						 
+
+	- Interfaces de repositorio: 	Interfaz con las operaciones CRUD Básicas 
+							+ 
+						Interfaz que define las operaciones para la persistencia de autores
+ 
+
+- Biblioteca de clases Libreria.AccesoDatos.
+	- EF\RespositorioAutor - implementado
+
+	 
+	- Incluye clase de contexto LibreriaContext con DbSet de autor
+
+	- Tiene dependencia con Dominio y con los paquetes necesarios de EF
+	
+	- Incluye la migración inicial para crear la base de datos.
+
+- Aplicación Libreria.MVC con 
+
+	Código para configuraciones:
+	-appsettings.json con la cadena de conexión
+	- Startup.cs con implementación de inyección de dependencias a los repositorios y configuración de la clase de contexto LibreriaContext
+
+	- Dependencias:
+		- Microsoft.EntityFrameworkCore.Design
+		- Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+	- Controllers:
+
+		- HomeController y sus vistas: menú de opciones y breve explicación del contenido.
+		- PublicacionController con los métodos para las operaciones CRUD de libros y revistas implementados.
+		- AutorController con los métodos para largar las operaciones CRUD de autores.
+	- View Models
+		- View models para edición y visualización de publicaciones
+			- Observar que se usó herencia entre Models
+	- Views
+		- Se usaron vistas parciales para desplegar los datos base y específicos de cada subtipo.
